@@ -7,6 +7,21 @@ const styles = {
     svg: {
       cursor: "pointer",
     },
+
+    ".greenButton": {
+      backgroundColor: "#27bbff", // Green background
+      border: 'none', // No border
+      color: 'white', // White text
+      padding: '10px 10px', // Padding inside the button
+      textAlign: 'center', // Centered text
+      textDecoration: 'none', // No underline on the text
+      display: 'inline-block', // Align the button next to other elements
+      fontSize: '14px', // Font size
+      margin: '40px 0px', // Margin around the button
+      cursor: 'pointer', // Cursor changes to a hand icon when you hover over it
+      borderRadius: '8px', // Rounded corners
+    },
+
     ".table": {
       border: "1px solid #424242",
     },
