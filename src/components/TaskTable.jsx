@@ -12,13 +12,20 @@ function setupTableColumns(contactData) {
     return [];
   }
 
-  const columns = Object.keys(contactData[0]).map((key, index) => {
-    return {
-      accessorKey: `${key}`,
-      header: `${key}`,
-      cell: EditableCell,
-    };
-  });
+  const columns = Object.keys(contactData[0])
+    .filter(
+      (key) =>
+        key.startsWith("S-G") || key.startsWith("A-G") || key.startsWith("C-G")
+    )
+    .map((key, index) => {
+      return {
+        accessorKey: `${key}`,
+        header: `${key.split(":")[1].trim()}${
+          key.startsWith("A-G") ? " (LinkedIn)" : ""
+        }`,
+        cell: EditableCell,
+      };
+    });
 
   return columns;
 }
@@ -37,13 +44,15 @@ const TaskTable = ({ contactData, onUpdateData }) => {
     },
   });
 
+  console.log(table.getHeaderGroups());
+
   return (
     <Box>
       <Box className="table" w={table.getTotalSize()}>
         {table.getHeaderGroups().map((headerGroup) => (
           <Box className="tr" key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <Box className="th" key={header.id} w={header.getSize()}>
+              <Box className={header.id.startsWith("A") ? "th active" : "th" } key={header.id} w={header.getSize()}>
                 {header.column.columnDef.header}
 
                 <Box
