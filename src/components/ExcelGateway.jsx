@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as XLSX from "xlsx";
 
-const UploadExcel = ({ onAddContactData }) => {
+const ExcelGateway = ({ onAddContactData, onDownloadData }) => {
   function handleFileUpload(e) {
     const reader = new FileReader();
     reader.readAsBinaryString(e.target.files[0]);
@@ -19,13 +19,16 @@ const UploadExcel = ({ onAddContactData }) => {
   }
 
   return (
-    <input
-      className="greenButton"
-      type="file"
-      accept=".xlsx, .xlx"
-      onChange={handleFileUpload}
-    />
+    <div>
+      <input
+        className="greenButton"
+        type="file"
+        accept=".xlsx, .xlx"
+        onChange={handleFileUpload}
+      />
+      <button onClick={onDownloadData}>Download Excel</button>
+    </div>
   );
 };
 
-export default UploadExcel;
+export default ExcelGateway;
