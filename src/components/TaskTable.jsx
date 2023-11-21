@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import {
   getCoreRowModel,
@@ -31,7 +31,7 @@ function setupTableColumns(contactData) {
   return columns;
 }
 
-const TaskTable = ({ contactData, onUpdateData }) => {
+const TaskTable = ({ contactData, onUpdateData, onFetchLinkedIn }) => {
   let data = contactData;
   const columns = setupTableColumns(data);
 
@@ -49,6 +49,9 @@ const TaskTable = ({ contactData, onUpdateData }) => {
 
   return (
     <Box>
+      <Button colorScheme="teal" size="md" mb="4" onClick={onFetchLinkedIn}>
+        Update
+      </Button>
       <Box className="table" w={table.getTotalSize()}>
         {table.getHeaderGroups().map((headerGroup) => (
           <Box className="tr" key={headerGroup.id}>

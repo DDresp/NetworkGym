@@ -25,6 +25,10 @@ function App() {
     console.log(contactData);
   }
 
+  function fetchLinkedIn() {
+    console.log("fetch linkedIn")
+  }
+
   function downloadData() {
     const worksheet = XLSX.utils.json_to_sheet(contactData);
     const workbook = XLSX.utils.book_new();
@@ -40,7 +44,7 @@ function App() {
         onDownloadData={downloadData}
       />
       {contactData.length > 0 ? (
-        <TaskTable contactData={contactData} onUpdateData={updateData} />
+        <TaskTable contactData={contactData} onUpdateData={updateData} onFetchLinkedIn={fetchLinkedIn} />
       ) : (
         <p>No contact data, please import your excel</p>
       )}
