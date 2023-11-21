@@ -5,7 +5,8 @@ import {
   useReactTable,
   flexRender,
 } from "@tanstack/react-table";
-import EditableCell from "./EditableCell";
+import EditableCell from "./TableCells/EditableCell";
+import CheckCell from "./TableCells/CheckCell";
 
 function setupTableColumns(contactData) {
   if (contactData.length === 0) {
@@ -23,7 +24,7 @@ function setupTableColumns(contactData) {
         header: `${key.split(":")[1].trim()}${
           key.startsWith("A-G") ? " (LinkedIn)" : ""
         }`,
-        cell: EditableCell,
+        cell: key === "S-G: Tracked" ? CheckCell : EditableCell,
       };
     });
 
@@ -52,7 +53,11 @@ const TaskTable = ({ contactData, onUpdateData }) => {
         {table.getHeaderGroups().map((headerGroup) => (
           <Box className="tr" key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <Box className={header.id.startsWith("A") ? "th active" : "th" } key={header.id} w={header.getSize()}>
+              <Box
+                className={header.id.startsWith("A") ? "th active" : "th"}
+                key={header.id}
+                w={header.getSize()}
+              >
                 {header.column.columnDef.header}
 
                 <Box
