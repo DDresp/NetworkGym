@@ -27,7 +27,6 @@ function setupTableColumns(contactData) {
         cell: key === "S-G: Tracked" ? CheckCell : EditableCell,
       };
     });
-
   return columns;
 }
 
