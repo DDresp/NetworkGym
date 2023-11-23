@@ -1,10 +1,10 @@
 import { Box, Heading, Button } from "@chakra-ui/react";
-import TaskTable from "./Table/TaskTable";
-import ExcelGateway from "./Table/ExcelGateway";
+import TaskTable from "./DataDisplay/Table/TaskTable";
+import ExcelGateway from "./DataDisplay/Table/ExcelGateway";
 import { useState } from "react";
 import * as XLSX from "xlsx";
 import { httpsCallable } from "firebase/functions";
-import { auth, functions } from "../../firebase-config";
+import { auth, functions } from "../firebase-config";
 
 const AllPage = () => {
   const [contactData, setContactData] = useState([]);
@@ -27,10 +27,9 @@ const AllPage = () => {
   }
 
   function fetchLinkedIn() {
-    console.log("fetch linkedIn");
-    const checkOpenAI = httpsCallable(functions, "checkOpenAI");
-    checkOpenAI().then((result) => {
-      console.log("finished");
+    const maybeWorks = httpsCallable(functions, "maybeWorks");
+    const data = { text: "bla bla" };
+    maybeWorks(data).then((result) => {
       console.log(result.data);
     });
   }

@@ -6,6 +6,9 @@ from firebase_admin import initialize_app
 
 app = initialize_app()
 
-@https_fn.on_request()
-def checkOpenAI(req: https_fn.Request):
-    return https_fn.Response("Hello Darius")
+@https_fn.on_call()
+def maybeWorks(req: https_fn.CallableRequest):
+    text = req.data["text"]
+    return {
+        "something": f"maybe works {text}"
+    }
